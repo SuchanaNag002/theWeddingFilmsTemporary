@@ -1,6 +1,6 @@
 import YouTube from "react-youtube";
 
-const VideoCard = ({vid,index}) => {
+const VideoCard = ({vid,key}) => {
     const getVideoIdFromUrl = (url) => {
         // Extract the video ID from the YouTube URL
         const videoId = url.split("v=")[1];
@@ -12,7 +12,7 @@ const VideoCard = ({vid,index}) => {
     };
 
     return (
-        <div key={index} className=' py-24 grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 bg-black text-white min-h-[60vh] w-screen overflow-hidden'>
+        <div key={key} className=' py-24 grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1 bg-black text-white min-h-[60vh] w-screen overflow-hidden'>
             <div className="max-w-full h-full p-4">
                 <YouTube
                         className="p-6 max-w-full"

@@ -73,6 +73,7 @@ const Nav = (props) => {
                 categories ?
                   categories.map((cat,i)=>
                   <a
+                    key={i}
                     href={`/gallery/${cat.name}`}
                     className="py-2 px-4 text-base md:text-lg my-2 hover:text-orange-500 hover:font-bold  hover:scale-110 rounded-xl transition-all duration-300"
                   >

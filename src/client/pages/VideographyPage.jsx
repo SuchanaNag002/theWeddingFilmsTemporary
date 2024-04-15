@@ -27,7 +27,7 @@ const VideographyPage = () => {
         </div>
         <div className="min-h-[50vh] bg-black">
           {
-            videoData.map((vid,i)=><VideoCard vid={vid} index={i} />)
+            videoData.map((vid,i)=><VideoCard vid={vid} key={i} />)
           }
         </div>
       </div>

@@ -23,6 +23,7 @@ const ProjectCarousel = ({ projects }) => {
     <div className="flex h-[80vh] w-screen overflow-hidden relative bg-black">
       {projects.map((project) => (
         <div
+          key={i}
           className="
                         carousel-image-wrapper
                         h-full min-w-[100vw]
@@ -66,6 +67,7 @@ const ProjectCarousel = ({ projects }) => {
       <div className="absolute z-[10] bottom-4 right-0 left-0 flex items-center justify-center gap-4">
         {projects.map((_, i) => (
           <div
+            key={i}
             className={`transition-all w-3 h-3 bg-white \
                     rounded-full ${curr == i ? "p-1" : " bg-opacity-50"}`}
           ></div>

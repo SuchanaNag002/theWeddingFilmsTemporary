@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-export default function page() {
+const AdminLoginPage = () => {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -59,3 +59,5 @@ export default function page() {
     </div>
   );
 }
+
+export default AdminLoginPage;
