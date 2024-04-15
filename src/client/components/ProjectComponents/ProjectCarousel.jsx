@@ -21,7 +21,7 @@ const ProjectCarousel = ({ projects }) => {
 
   return (
     <div className="flex h-[80vh] w-screen overflow-hidden relative bg-black">
-      {projects.map((project) => (
+      {projects.map((project,i) => (
         <div
           key={i}
           className="
