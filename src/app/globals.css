@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  background-color: #f7f4f4;
+  
+}
+button {
+  transition: transform 0.4;
+}
+button:hover {
+  scale: 1.05;
+}
+button:active {
+  scale: 0.95
+}
+.input-wrapper input {
+  border: none;
+}
+
+.input-wrapper .input:focus, .input-wrapper .input:valid{
+  border: 2px solid rgb(0, 148, 246);
+  outline: none;
+}
+
+.input-wrapper .input:focus + .input-wrapper-label, .input-wrapper .input:valid + .input-wrapper-label{
+    transform: translate(20%,-100%);
+    color: rgb(0, 148, 246);
+}
+
+.shadow-around{
+  box-shadow: 0rem 0rem 0.5rem rgba(32,32,32,0.4);
+}
+
+.flex-center{
+  @apply flex items-center  justify-center;
+}
+
+.gradient-primary{
+  /* @apply bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400;
+  @apply hover:from-orange-600 hover:via-amber-400 hover:to-yellow-300; */
+  @apply bg-gradient-to-br from-rose-700 via-rose-600 to-yellow-400;
+  @apply hover:from-rose-600 hover:via-rose-500 hover:to-yellow-400;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 0, 85);
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #f84747;
+}
+
+.slide-in-container > .slide-in-div {
+  width: 0px;
+  transition: all 0.5s ease-in-out;
+
+}
+
+.slide-in-container:hover > .slide-in-div {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+#about_me {
+  background-color: white;
+}
+
+.bg-container {
+  background-image: url(/back.webp);
+  background-size: 90%;
+  border: none;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.bg-container1{
+  background-image: url('/green2.jpg');
+  background-size: 23% auto;
+  background-position: top ;
+  background-repeat: repeat-x;
+  background-color: white; 
+}
