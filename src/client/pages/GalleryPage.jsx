@@ -38,7 +38,7 @@ const GalleryPage = ({name}) => {
   }
 
   return (
-    <div>
+    <div className="pt-24">
       <Nav />
       <div className="mt-8 flex flex-col items-center mb-8">
         <p className="text-center text-2xl mt-4 mb-4 md:text-3xl flex items-center justify-center">

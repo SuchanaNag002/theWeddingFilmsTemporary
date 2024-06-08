@@ -13,7 +13,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     backdrop-filter: blur(10px); 
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(255, 255, 255, 0.5); 
     transition: all 0.4s ease-in-out;
 }
 
@@ -21,9 +21,10 @@
     transition: all 0.4s ease-in-out;
 }
 .nav-screen-off{
-    height: 100vh;
-    width: 0;
-    transform: translateX(50%);
+    height: 0;
+    width: 100vw;
+    transform: translateX(300%);
+
 }
 .nav-screen-on{
     height: 100vh;

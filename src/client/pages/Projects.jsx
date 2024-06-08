@@ -19,7 +19,7 @@ const Projects = () => {
       <PageHeading
         heading={"Stories"}
         description={
-          "Embark on a journey through a symphony of light, color, and emotion as you explore our meticulously curated photoshoot albums. Each image is a masterpiece, meticulously crafted to capture the essence of every moment, every glance, and every smile. From intimate portraits bathed in soft, ethereal light to grand celebrations pulsating with energy and vibrancy, our photoshoots are a testament to the artistry and passion that infuses every frame."
+          "Step into a world where every frame tells a story, and every moment is captured with breathtaking artistry. Our wedding videography and photography portfolio is a blend of light, color, and emotion, showcasing the best wedding photography and cinematic wedding videography in India. Each image is thoughtfully crafted to preserve the essence of your special day, from intimate, tender moments to the vibrant energy of grand celebrations. Trust our team of best wedding videographers and photographers to turn your wedding into a timeless masterpiece, filled with beauty and emotion in every shot."
         }
       />
       <div className="flex flex-wrap items-center justify-center gap-2 my-10">

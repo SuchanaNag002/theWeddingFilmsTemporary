@@ -1,0 +1,24 @@
+.scroll_down_button {
+    animation: scroll_down_button_animation 1s ease-in-out 2s infinite;
+}
+
+@keyframes scroll_down_button_animation {
+    0% {
+        transform: translateY(0%);
+    }
+    10% {
+        transform: translateY(-5%);
+    }
+    20% {
+        transform: translateY(0%);
+    }
+    30% {
+        transform: translateY(-5%);
+    }
+    40% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
