@@ -1,5 +1,28 @@
 import { ApiCaller } from "@/ApiManager/apiCaller";
 import { v4 as uuidv4 } from "uuid";
+import Compressor from "compressorjs";
+
+const MAX_FILE_SIZE_MB = 9; // Maximum file size in MB to trigger compression
+
+const compressImageIfNeeded = async (file) => {
+  if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+    return new Promise((resolve, reject) => {
+      new Compressor(file, {
+        quality: 0.8, // Example compression quality
+        maxWidth: 1920, // Example maximum width
+        maxHeight: 1080, // Example maximum height
+        success(result) {
+          resolve(result);
+        },
+        error(error) {
+          reject(error);
+        },
+      });
+    });
+  } else {
+    return file;
+  }
+};
 //ADD PROJECT functions
 const handleAddThumbnail = (acceptedfiles, setter) => {
   setter({
@@ -72,26 +95,26 @@ const deleteCategory = (setCategories, catIndex) => {
   });
 };
 
-const generateProjectDummyId = () => {
-  const length = 10;
-  let result = "";
-
-  for (let i = 0; i < length; i++) {
-    const randomNumber = Math.floor(Math.random() * 36);
-    const character =
-      randomNumber < 10 ? randomNumber : String.fromCharCode(randomNumber + 87);
-    result += character;
-  }
-
-  return result;
-};
-
 const handleSubmit = async (ProjectData) => {
   ProjectData.dummyId = uuidv4();
 
+  console.log(ProjectData);
+
+  // Helper function to upload a single image to Cloudinary
+  const uploadImageToCloudinary = async (file, folder) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "photographer_portfolio");
+    formData.append("folder", folder);
+    const imageData = await ApiCaller.UploadToCloudinary(formData);
+    return imageData.secure_url;
+  };
+
   // Upload thumbnail to Cloudinary
+  const thumbnailFile = ProjectData.thumbnail.file;
+  const compressedThumbnailFile = await compressImageIfNeeded(thumbnailFile);
   const thumbnailFormData = new FormData();
-  thumbnailFormData.append("file", ProjectData.thumbnail.file);
+  thumbnailFormData.append("file", compressedThumbnailFile);
   thumbnailFormData.append("upload_preset", "photographer_portfolio");
   thumbnailFormData.append("folder", `${ProjectData.dummyId}/thumbnail`);
   const thumbnailData = await ApiCaller.UploadToCloudinary(thumbnailFormData);
@@ -103,21 +126,22 @@ const handleSubmit = async (ProjectData) => {
       // Process image URLs
       const imageUrls = await Promise.all(
         category.unsavedImageUrls.map(async (media) => {
+          const file = media.file;
+          const compressedFile = await compressImageIfNeeded(file);
           const formData = new FormData();
-          formData.append("file", media.file);
+          formData.append("file", compressedFile);
           formData.append("upload_preset", "photographer_portfolio");
           formData.append(
             "folder",
             `${ProjectData.dummyId}/${category.dummyCatId}`
           );
-          const imageData = await ApiCaller.UploadToCloudinary(formData);
-          return imageData.secure_url;
+          const imageUrl = await ApiCaller.UploadToCloudinary(formData);
+          return imageUrl.secure_url;
         })
       );
 
       // Extract video URLs
       const videoUrls = category.unsavedVideoUrls.map((media) => media.src);
-      console.log(category.dummyCatId);
       return {
         dummyCatId: category.dummyCatId,
         name: category.name,
@@ -136,7 +160,7 @@ const handleSubmit = async (ProjectData) => {
     categories: categoriesData,
   });
 
-  console.log("Uploaded data to databse: ", data);
+  console.log("Uploaded data to database: ", data);
 };
 
 export {

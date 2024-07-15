@@ -12,7 +12,7 @@ export const GalleryContextProvider = ({ children }) => {
       .then((response) => {
         const data = response.data;
         setCategories(data.data); // Assuming the data is an array of projects
-        console.log(data);
+        //console.log(data);
       })
       .catch((error) => {
         console.log(error);
