@@ -32,6 +32,18 @@ const AdminSidebar = (props) => {
         Edit Projects
       </a>
       <a
+        href="/admin/AddBlog"
+        className={
+          "ml-auto sm:ml-0 cursor-pointer p-2 sm:py-4 sm:my-4 \
+            sm:px-4 rounded-xl   hover:opacity-60 hover:bg-slate-800" +
+          (props.menu == "AddBlog"
+            ? " bg-white text-black"
+            : " bg-black text-white")
+        }
+      >
+        Add Blog
+      </a>
+      <a
         href="/admin/EditGallery"
         className={
           "cursor-pointer p-2 sm:py-4 sm:my-4 sm:px-4 rounded-xl \
