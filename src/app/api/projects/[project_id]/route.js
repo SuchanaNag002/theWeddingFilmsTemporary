@@ -1,12 +1,12 @@
 import Project from "@/models/ProjectModel";
-import connectMongoDB from "@/libs/mongodb";
+import connectImagesDB from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 
 //finds a project using its id
 export async function GET(request, {params}){
     try {
         const { project_id } = params;
-        await connectMongoDB();
+        await connectImagesDB();
         const project = await Project.findById(project_id);
         //console.log(project);
         if (project === null) {
@@ -24,7 +24,7 @@ export async function GET(request, {params}){
 export async function DELETE(request, { params }) {
     try {
       const { project_id } = params;
-      await connectMongoDB();
+      await connectImagesDB();
       const deletedProject = await Project.findByIdAndDelete(project_id);
   
       if (!deletedProject) {

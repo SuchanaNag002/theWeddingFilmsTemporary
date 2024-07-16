@@ -1,25 +1,14 @@
 import { ApiCaller } from "@/ApiManager/apiCaller";
+import { v4 as uuidv4 } from "uuid";
+import Compressor from "compressorjs";
+
 //EDIT PROJECT functions
-
-const generateCategoryDummyId = () => {
-  const length = 4;
-  let result = "";
-
-  for (let i = 0; i < length; i++) {
-    const randomNumber = Math.floor(Math.random() * 36);
-    const character =
-      randomNumber < 10 ? randomNumber : String.fromCharCode(randomNumber + 87);
-    result += character;
-  }
-
-  return result;
-};
 
 const AddCategory = (categories, setCategories, setCurrentCategoryIndex) => {
   setCategories((prev) => [
     {
       name: `New Category`,
-      dummyCatId: generateCategoryDummyId(),
+      dummyCatId: uuidv4(),
       unsavedImageUrls: [],
       unsavedVideoUrls: [],
     },

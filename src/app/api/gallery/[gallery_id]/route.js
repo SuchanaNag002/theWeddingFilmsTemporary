@@ -1,9 +1,9 @@
 import GalleryImage from "@/models/GalleryModel";
 import { NextResponse } from "next/server";
-import connectMongoDB from "@/libs/mongodb";
+import connectImagesDB from "@/libs/mongodb";
 export async function DELETE(req, { params }) {
   try {
-    await connectMongoDB();
+    await connectImagesDB();
     const { gallery_id } = params;
     const deletedMedia = await GalleryImage.findByIdAndDelete(gallery_id);
     if (!deletedMedia) {

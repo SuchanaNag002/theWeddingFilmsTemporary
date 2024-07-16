@@ -8,9 +8,9 @@ const compressImageIfNeeded = async (file) => {
   if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
     return new Promise((resolve, reject) => {
       new Compressor(file, {
-        quality: 0.8, // Example compression quality
-        maxWidth: 1920, // Example maximum width
-        maxHeight: 1080, // Example maximum height
+        quality: 0.8, 
+        maxWidth: 1920, 
+        maxHeight: 1080, 
         success(result) {
           resolve(result);
         },
@@ -99,16 +99,6 @@ const handleSubmit = async (ProjectData) => {
   ProjectData.dummyId = uuidv4();
 
   console.log(ProjectData);
-
-  // Helper function to upload a single image to Cloudinary
-  const uploadImageToCloudinary = async (file, folder) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "photographer_portfolio");
-    formData.append("folder", folder);
-    const imageData = await ApiCaller.UploadToCloudinary(formData);
-    return imageData.secure_url;
-  };
 
   // Upload thumbnail to Cloudinary
   const thumbnailFile = ProjectData.thumbnail.file;
