@@ -1,6 +1,6 @@
 import GalleryImage from "@/models/GalleryModel";
 import { NextResponse } from "next/server";
-import connectImagesDB from "@/libs/mongodb";
+import {connectImagesDB} from "@/libs/mongodb";
 export async function DELETE(req, { params }) {
   try {
     await connectImagesDB();

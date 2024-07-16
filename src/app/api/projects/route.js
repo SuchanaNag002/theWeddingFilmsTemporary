@@ -1,4 +1,4 @@
-import connectImagesDB from "@/libs/mongodb";
+import { connectImagesDB } from "@/libs/mongodb";
 import Project from "@/models/ProjectModel";
 import { NextResponse } from "next/server";
 

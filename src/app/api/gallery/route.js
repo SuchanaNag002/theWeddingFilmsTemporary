@@ -1,6 +1,6 @@
 import GalleryImage from "@/models/GalleryModel";
 import { NextResponse } from "next/server";
-import connectImagesDB from "@/libs/mongodb";
+import { connectImagesDB } from "@/libs/mongodb";
 
 export async function POST(req) {
   try {
@@ -42,4 +42,3 @@ export async function GET(req) {
     return NextResponse.json({ success: false, data: null });
   }
 }
-

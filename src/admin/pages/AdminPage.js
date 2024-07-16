@@ -4,6 +4,7 @@ import EditProject from "../components/menus/EditProjectItems/EditProject";
 import AddProject from "../components/menus/AddProjectItems/AddProject";
 import EditAboutMe from "../components/menus/EditAboutMe";
 import EditGallery from "../components/menus/EditGalleryItems/EditGallery";
+import AddBlog from "../components/menus/AddBlogItems/AddBlog";
 
 const handlePageChange = (page) => {
   if (page == "AddProject") {
@@ -14,6 +15,8 @@ const handlePageChange = (page) => {
     return <EditGallery />;
   } else if (page == "EditAboutMe") {
     return <EditAboutMe />;
+  } else if (page == "AddBlog") {
+    return <AddBlog />;
   } else {
     return <EditProject />;
   }
