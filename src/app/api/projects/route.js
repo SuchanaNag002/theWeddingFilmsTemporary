@@ -1,4 +1,4 @@
-import { connectImagesDB } from "@/libs/mongodb";
+import { connectDB } from "@/libs/mongodb";
 import Project from "@/models/ProjectModel";
 import { NextResponse } from "next/server";
 
@@ -8,7 +8,7 @@ export async function POST(request) {
     // Destructure data from the JSON payload
     const { projectId, dummyId, title, description, categories, thumbnail } =
       await request.json();
-    await connectImagesDB();
+    await connectDB();
     const existingProject = await Project.findById(projectId);
     if (existingProject) {
       // Update the existing project with new data
@@ -63,7 +63,7 @@ export async function POST(request) {
 //gets all the projects
 export async function GET(request) {
   try {
-    await connectImagesDB();
+    await connectDB();
     const projects = await Project.find();
     return NextResponse.json({ success: true, data: projects });
   } catch (error) {

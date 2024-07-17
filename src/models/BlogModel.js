@@ -15,7 +15,7 @@ try {
       type: String,
       required: true,
     },
-    imageUrls: {
+    imageUrl: {
       type: String,
       required: true,
     },

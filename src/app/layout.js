@@ -1,6 +1,5 @@
 import { Inter,Montserrat } from 'next/font/google'
 import { GalleryContextProvider } from '@/context/Gallery_Context'
-import Footer from '@/client/components/common/Footer'
 import "./cssreset.css"
 import './globals.css'
 
@@ -21,9 +20,6 @@ export default function RootLayout({ children }) {
           <GalleryContextProvider>
             {children}
           </GalleryContextProvider>
-        </div>
-        <div id="footer mt-auto">
-          <Footer />
         </div>
       </body>
     </html>

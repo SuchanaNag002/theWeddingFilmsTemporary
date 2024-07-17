@@ -15,6 +15,8 @@ const generateSignature = (publicId, apiSecret, timestamp) => {
 };
 
 export class ApiCaller {
+  //CLOUDINARY FUNCTIONS
+
   static async UploadToCloudinary(mediaData) {
     try {
       const response = await axios.post(
@@ -67,6 +69,8 @@ export class ApiCaller {
     }
   }
 
+  //PROJECT FUNCTIONS
+
   static async uploadToDatabase(projectData) {
     console.log(projectData);
     try {
@@ -112,6 +116,8 @@ export class ApiCaller {
     }
   }
 
+  //GALLERY FUNCTIONS
+
   static async postGalleryMedia(mediaData) {
     try {
       //console.log("Media sent: ", mediaData);
@@ -153,6 +159,19 @@ export class ApiCaller {
     }
   }
 
+  static async fetchAllProjects() {
+    try {
+      const response = await axios.get("/api/projects");
+      // console.log(response.data);
+      return response.data.success ? response.data.data : [];
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      return [];
+    }
+  }
+
+  //EMAIL FUNCTIONS
+
   static async SendEmail(data) {
     try {
       const response = await axios.post("/api/Booking", data);
@@ -163,14 +182,66 @@ export class ApiCaller {
     }
   }
 
-  static async fetchAllProjects() {
+  //BLOG FUNCTIONS
+
+  static async saveBlog(blogData) {
     try {
-      const response = await axios.get("/api/projects");
-      // console.log(response.data);
-      return response.data.success ? response.data.data : [];
+      console.log("Recived blog data at ApiCaller.js: ", blogData);
+      const response = await axios.post("/api/blogs", blogData);
+      console.log("Blog saved:", response.data);
+      return response.data;
     } catch (error) {
-      console.error("Error fetching projects:", error);
-      return [];
+      console.error("Error saving blog:", error);
+      throw error;
+    }
+  }
+
+  static async updateBlog(blogId, blogData) {
+    try {
+      if (blogData.imageFile) {
+        const imageUrl = await this.uploadToCloudinary(blogData.imageFile);
+        blogData.imageUrl = imageUrl;
+      }
+
+      const response = await axios.put(`/api/blogs/${blogId}`, blogData);
+      console.log("Blog updated:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      throw error;
+    }
+  }
+
+  static async deleteBlog(blogId) {
+    try {
+      const response = await axios.delete(`/api/blogs/${blogId}`);
+      console.log("Blog deleted:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      throw error;
+    }
+  }
+
+  static async getBlogById(blogId) {
+    try {
+      const response = await axios.get(`/api/blogs/${blogId}`);
+      console.log("Blog fetched:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching blog:", error);
+      throw error;
+    }
+  }
+
+  static async fetchAllBlogs() {
+    try {
+      const response = await axios.get("/api/blogs");
+      console.log("All blogs fetched:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching all blogs:", error);
+      throw error;
     }
   }
 }
