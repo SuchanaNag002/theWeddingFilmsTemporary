@@ -1,6 +1,5 @@
-// Import Blog model
-import Blog from "@/models/BlogModel"; // Adjust path based on your project structure
-import { connectDB } from "@/libs/mongodb"; // Adjust path based on your project structure
+import Blog from "@/models/BlogModel";
+import { connectDB } from "@/libs/mongodb"; 
 import { NextResponse } from "next/server";
 
 // Get a blog post by ID

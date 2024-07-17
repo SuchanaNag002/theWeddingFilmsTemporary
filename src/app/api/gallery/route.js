@@ -1,10 +1,10 @@
 import GalleryImage from "@/models/GalleryModel";
 import { NextResponse } from "next/server";
-import { connectImagesDB } from "@/libs/mongodb";
+import { connectDB } from "@/libs/mongodb";
 
 export async function POST(req) {
   try {
-    await connectImagesDB();
+    await connectDB();
     const mediaData = await req.json();
     //console.log(mediaData);
     if (mediaData.categoryId) {
@@ -33,7 +33,7 @@ export async function POST(req) {
 
 export async function GET(req) {
   try {
-    await connectImagesDB();
+    await connectDB();
     const media = await GalleryImage.find();
     //console.log(media);
     return NextResponse.json({ success: true, data: media });
