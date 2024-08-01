@@ -6,16 +6,18 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     await connectDB();
-    console.log("At /api/blogs: ", body);
     const { name, text, imageUrl } = await request.json();
     const date = new Date();
+
     const newBlog = new Blog({
       name,
       text,
       imageUrl,
-      date: date,
+      date,
     });
+
     const savedBlog = await newBlog.save();
+
     return NextResponse.json({
       success: true,
       data: savedBlog,
@@ -23,14 +25,16 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error(error);
-    return NextResponse.error({
+
+    return NextResponse.json({
       success: false,
       data: null,
-      message: "Error: " + error.message,
+      message: `Error: ${error.message}`,
     });
   }
 }
 
+// Get all blog posts
 export async function GET(request) {
   try {
     await connectDB();
@@ -42,9 +46,11 @@ export async function GET(request) {
     });
   } catch (error) {
     console.error(error);
+
     return NextResponse.json({
       success: false,
       data: [],
+      message: `Error: ${error.message}`,
     });
   }
 }

@@ -1,9 +1,8 @@
 import React from "react";
 
 const AdminSidebar = (props) => {
-  // console.log(props.menu);
   return (
-    <div className="w-full h-[10vh] sm:min-h-screen sm:h-fit bg-black p-2 flex flex-row sm:flex-col">
+    <div className="w-full h-[10vh] sm:min-h-screen sm:h-fit bg-black p-2 flex flex-row sm:flex-col fixed bottom-0 sm:static z-0">
       <div className="hidden sm:block text-2xl font-extrabold text-white sm:my-8 text-center">
         ADMIN
       </div>
@@ -11,8 +10,8 @@ const AdminSidebar = (props) => {
         href="/admin/AddProject"
         className={
           "ml-auto sm:ml-0 cursor-pointer p-2 sm:py-4 sm:my-4 \
-            sm:px-4 rounded-xl   hover:opacity-60 hover:bg-slate-800" +
-          (props.menu == "AddProject"
+            sm:px-4 rounded-xl hover:opacity-60 hover:bg-slate-800 text-sm sm:text-base" +
+          (props.menu === "AddProject"
             ? " bg-white text-black"
             : " bg-black text-white")
         }
@@ -23,8 +22,8 @@ const AdminSidebar = (props) => {
         href="/admin/EditProject"
         className={
           "ml-auto sm:ml-0 cursor-pointer p-2 sm:py-4 sm:my-4 \
-            sm:px-4 rounded-xl   hover:opacity-60 hover:bg-slate-800" +
-          (props.menu == "EditProject"
+            sm:px-4 rounded-xl hover:opacity-60 hover:bg-slate-800 text-sm sm:text-base" +
+          (props.menu === "EditProject"
             ? " bg-white text-black"
             : " bg-black text-white")
         }
@@ -35,8 +34,8 @@ const AdminSidebar = (props) => {
         href="/admin/AddBlog"
         className={
           "ml-auto sm:ml-0 cursor-pointer p-2 sm:py-4 sm:my-4 \
-            sm:px-4 rounded-xl   hover:opacity-60 hover:bg-slate-800" +
-          (props.menu == "AddBlog"
+            sm:px-4 rounded-xl hover:opacity-60 hover:bg-slate-800 text-sm sm:text-base" +
+          (props.menu === "AddBlog"
             ? " bg-white text-black"
             : " bg-black text-white")
         }
@@ -47,8 +46,8 @@ const AdminSidebar = (props) => {
         href="/admin/EditGallery"
         className={
           "cursor-pointer p-2 sm:py-4 sm:my-4 sm:px-4 rounded-xl \
-          hover:opacity-60 hover:bg-slate-800 " +
-          (props.menu == "EditGallery"
+          hover:opacity-60 hover:bg-slate-800 text-sm sm:text-base" +
+          (props.menu === "EditGallery"
             ? " bg-white text-black"
             : " bg-black text-white")
         }
@@ -58,11 +57,12 @@ const AdminSidebar = (props) => {
       <a
         href="/"
         className="mr-auto sm:mr-0 cursor-pointer p-2 sm:py-4 sm:my-4 sm:px-4 bg-black text-white rounded-xl \
-           hover:opacity-60 hover:bg-slate-800 "
+           hover:opacity-60 hover:bg-slate-800 text-sm sm:text-base"
       >
         Visit Website
       </a>
     </div>
   );
 };
+
 export default AdminSidebar;

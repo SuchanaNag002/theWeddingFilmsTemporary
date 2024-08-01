@@ -1,5 +1,5 @@
 import Blog from "@/models/BlogModel";
-import { connectDB } from "@/libs/mongodb"; 
+import { connectDB } from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 
 // Get a blog post by ID
@@ -33,11 +33,11 @@ export async function GET(request, { params }) {
 }
 
 // Update a blog post by ID
-export async function PUT(request, { params, body }) {
+export async function PUT(request, { params }) {
   try {
     await connectDB(); // Ensure database connection
     const { blog_id } = params;
-    const { name, text, imageUrl, date } = body;
+    const { name, text, imageUrl, date } = request.json();
     const updatedBlog = await Blog.findByIdAndUpdate(
       blog_id,
       {

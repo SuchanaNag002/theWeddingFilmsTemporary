@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Input from "@/commons/Input";
-import { handleSubmit } from "./AddBlogFunctions"; // Adjust path as needed
+import { handleSubmit } from "./AddBlogFunctions";
 
 const AddBlogForm = () => {
   const [formOpen, setFormOpen] = useState(true);
   const [blogName, setBlogName] = useState("");
   const [blogText, setBlogText] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const closeFormAndReloadPage = () => {
     // Reload page after form has been closed
@@ -17,11 +18,21 @@ const AddBlogForm = () => {
   };
 
   const handleSaveBlog = async () => {
+    // Check if the selected image is greater than 10MB
+    if (selectedImage && selectedImage.size > 10 * 1024 * 1024) {
+      alert(
+        "Image size is above 10MB. Please delete your blog if already saved and then input an image below 10MB and save again."
+      );
+      return;
+    }
+
     try {
+      setIsSaving(true);
+
       // Construct blog data to pass to handleSubmit
       const blogData = {
         name: blogName,
-        description: blogText,
+        text: blogText,
         thumbnail: selectedImage,
       };
 
@@ -29,11 +40,17 @@ const AddBlogForm = () => {
       await handleSubmit(blogData);
 
       // Optional: Handle success or navigate to a different page
-      console.log("Blog saved successfully!");
-      
+      alert("Blog saved successfully!");
+
+      // Reset form fields
+      setBlogName("");
+      setBlogText("");
+      setSelectedImage(null);
     } catch (error) {
       console.error("Error saving blog:", error);
-      // Handle error state or display error message
+      alert("Some error occurred! Please try again or contact the developer.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -81,8 +98,9 @@ const AddBlogForm = () => {
           <button
             onClick={handleSaveBlog}
             className="bg-blue-500 text-xl text-white mt-4 mb-2 px-4 py-2 rounded-xl mx-auto block"
+            disabled={isSaving}
           >
-            Save Blog
+            {isSaving ? "Saving Blog..." : "Save Blog"}
           </button>
         </div>
       </div>
